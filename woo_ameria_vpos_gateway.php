@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Plugin Name: Woo Test Payment Gateway
+ * Plugin Name: Woo Ameria vPOS Payment Gateway
  */
 
 add_action( 'plugins_loaded', 'woo_payment_gateway' );

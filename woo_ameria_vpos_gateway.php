@@ -84,10 +84,10 @@ function woo_payment_gateway() {
         global $woocommerce;
 	      $order = new WC_Order( $order_id );
 
-				$url = 'http://vpos-testing.epizy.com/testing_get_payment_id.php';
+				$url = 'http://vpos-testing.epizy.com/get_payment_id.php';
 
-				$desc = "order num {$order_id} for price of {$order->get_total()}!";
-				$data = array('username' => $this->username, 'password' => $this->password, 'orderId' => 2229067, 'description' => $desc, 'amount' => 10, 'backUri' => $this->backUri, 'clientId' => $this->clientId);
+				$desc = "Order num {$order_id} for price of {$order->get_total()}!";
+				$data = array('username' => $this->username, 'password' => $this->password, 'orderId' => $order_id, 'description' => $desc, 'amount' => $order->get_total(), 'backUri' => $this->backUri, 'clientId' => $this->clientId);
 
 				// use key 'http' even if you send the request to https://...
 				$options = array(
@@ -133,7 +133,7 @@ function check_for_woopaypal() {
     // Start the gateways
     if ($_GET['respcode'] == '00') {
 			WC()->payment_gateways();
-			$GLOBALS['returned_order_id'] = 56;
+			$GLOBALS['returned_order_id'] = $_GET['orderid'];
 	    do_action( 'check_wootestpayment' );
 		}
   }

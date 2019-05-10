@@ -18,9 +18,9 @@ function woo_payment_gateway() {
 	    public function __construct() {
 		    	$this->id                 	= 'woo_ameria_vpos_payment';
 					//$this->order_button_text  = __( 'Proceed to Test PG', 'woocommerce' );
-		    	$this->method_title       	= __( 'Woo Ameria vPOS Payment', 'woocommerce' );
+		    	$this->method_title       	= __( 'Credit/Debit card payment', 'woocommerce' );
 		    	$this->method_description 	= __( 'WooCommerce Ameria vPOS Payment Gateway', 'woocommerce' );
-		    	$this->title              	= __( 'Woo Ameria vPOS Payment', 'woocommerce' );
+		    	$this->title              	= __( 'Credit/Debit card payment', 'woocommerce' );
 
     			$this->has_fields = false;
     			$this->supports = array(
@@ -84,7 +84,7 @@ function woo_payment_gateway() {
         global $woocommerce;
 	      $order = new WC_Order( $order_id );
 
-				$url = 'http://vpos-testing.epizy.com/get_payment_id.php';
+				$url = 'https://ameria-vpos-api.herokuapp.com/get_payment_id.php';
 
 				$desc = "Order num {$order_id} for price of {$order->get_total()}!";
 				$data = array('username' => $this->username, 'password' => $this->password, 'orderId' => $order_id, 'description' => $desc, 'amount' => $order->get_total(), 'backUri' => $this->backUri, 'clientId' => $this->clientId);
